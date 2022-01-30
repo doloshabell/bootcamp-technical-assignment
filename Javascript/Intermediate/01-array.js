@@ -64,7 +64,7 @@ const arr = [
   console.log(searchInArray(arr, 4));
   console.log(searchInArray(arr, 8));
 
-/*Expected Result Soal - 02
+/*Expected Result Soal - 03
 null
 4
 null
