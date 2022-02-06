@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Skilvul</title>
+</head>
+
+<body>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" />
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" />
+    <button id="btn-submit" style="display: block; margin-top: 10px">
+        submit
+    </button>
+    <script>
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+        const submitButton = document.getElementById("btn-submit");
+
+        const validateEmail =
+            /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/g;
+        const validatePassword = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+        submitButton.onclick = function () {
+            const emailValue = emailInput.value;
+            const passwordValue = passwordInput.value;
+
+            const testEmail = validateEmail.test(emailValue);
+            const testPassword = validatePassword.test(passwordValue);
+
+            if (testEmail != true) {
+                alert("tolong masukan email yang valid");
+            } else if (testEmail == true && testPassword != true) {
+                alert("tolong masukan password sesuai ketentuan");
+            } else {
+                alert("Welcome to The Jungle");
+            }
+        };
+    </script>
+</body>
+
+</html>

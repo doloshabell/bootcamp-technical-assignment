@@ -1,0 +1,10 @@
+Apa itu localStorage?
+Apa itu cookies?
+Apa perbedaan antara localStorage dan sessionStorage?
+
+Answer
+1. localStorage digunakan untuk menyimpan data ke dalam penyimpanan lokal
+2. cookies adalah string yang memiliki beragam field 
+3. perbedaan localStorage dan sessionStorage adalah pada masa penyimpanan, data sessionStorage 
+akan otomatis terhapus ketika tab/window ditutup sedangkan data localStorage akan tersimpan jika user tidak menghapus
+cache browser secara manual atau aplikasi webnya sendiri yang menghapus data

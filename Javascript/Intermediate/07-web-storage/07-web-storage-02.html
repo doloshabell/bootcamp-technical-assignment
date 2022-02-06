@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+  <title>Skilvul</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand">Skilvul</a>
+      <form id="form-username" class="d-flex">
+        <input class="form-control me-2" type="text" placeholder="Username" aria-label="username" name="username" />
+        <button class="btn btn-outline-primary" type="submit">login</button>
+      </form>
+      <div id="div-username" class="d-none d-flex">
+        <button type="button" class="my-auto btn btn-primary btn-sm position-relative h-50">
+          <span id="username"></span>
+          <span id="badge-user"
+            class="top-0 position-absolute start-100 translate-middle badge rounded-pill bg-danger d-none">
+            10
+            <span class="visually-hidden">unread messages</span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-5">
+    <div id="list-user" class="row"></div>
+  </div>
+
+  <!-- Optional JavaScript; choose one of the two! -->
+  <script type="module">
+    import githubUsers from "./07-web-storage-dummy-data.js";
+
+      const elFormUsername = document.querySelector("#form-username");
+      const elDivUsername = document.querySelector("#div-username");
+      const elUsername = document.querySelector("#username");
+      const elListUser = document.querySelector("#list-user");
+      const elBadgeUser = document.querySelector("#badge-user");
+
+      // WEB STORAGE
+      let username = sessionStorage.getItem("username");
+      let profile = localStorage.getItem(username ? username : "");
+
+      githubUsers.forEach((user) => {
+        const elCol = document.createElement("div");
+        elCol.classList.add("col-xs-12", "col-sm-6", "col-md-4", "col-lg-3");
+
+        const elCard = document.createElement("div");
+        elCard.classList.add("card");
+
+        const elCardImg = document.createElement("div");
+        elCard.classList.add("card-img-top");
+        elCard.setAttribute("src", user.avatar_url);
+
+        const elCardBody = document.createElement("div");
+        elCardBody.classList.add("card-body");
+
+        const elCardTitle = document.createElement("div");
+        elCardTitle.classList.add("card-title");
+        elCardTitle.innerHTML = user.login;
+
+        const elCardButton = document.createElement("button");
+        elCardButton.classList.add("btn", "btn-primary", "w-100");
+        elCardButton.setAttribute("type", "button");
+        elCardButton.innerHTML = "Follow";
+
+        elCardBody.appendChild(elCardTitle);
+        elCardBody.appendChild(elCardButton);
+        elCard.appendChild(elCardBody);
+        elCard.appendChild(elCardImg);
+        elCol.appendChild(elCard);
+
+        elListUser.appendChild(elCol);
+      });
+
+      //Answer Soal - 02
+      const inputUsername = document.querySelector('[name="username"]');
+            
+      if(username!=null){
+        elDivUsername.classList.remove("d-none");
+        elFormUsername.classList.add("d-none");
+        elUsername.innerHTML = username;
+      } 
+      else {
+        elFormUsername.onsubmit = function(){
+          if (inputUsername.value != "") {
+            sessionStorage.setItem("username", inputUsername.value);
+            const getUsername = JSON.parse(username);
+
+            elDivUsername.classList.remove("d-none");
+            elFormUsername.classList.add("d-none");
+            elUsername.innerHTML = getUsername;
+          }
+          else {
+            alert("Harap isi username kamu terlebih dahulu ya. Terima kasih");
+          }
+        }
+      }
+
+      //Answer Soal - 03
+      let friends; //variable that use to store the following friends
+
+      /*function that use to check if friends that user follow is 0 or not, if not it will remove class
+      and display total of friends that user follow, if 0 it will add class to undisplay total of friends that user follow */
+      function displayUpdateFriendsBadge() {
+        if (friends.length != 0) {
+          elBadgeUser.classList.remove("d-none");
+          elBadgeUser.innerHTML = friends.length;
+        } 
+        else {
+          elBadgeUser.classList.add("d-none");
+        }
+      }
+
+      //function that use to push friendName user to friends[] that user want to follow
+      function followFriends(users) {
+        githubUsers.forEach((usr) => {
+          if (usr.login == users) {
+            friends.push(usr);
+          }
+        });
+
+        localStorage.setItem(username, JSON.stringify(friends));
+      }
+
+      //function that use to delete friendName user from friends[] that user want to unfollow
+      function unfollowFriends(users) {
+        friends.forEach((usr, i) => {
+          if (usr.login == users) {
+            friends.splice(i, 1);
+          }
+        });
+
+        localStorage.setItem(username, JSON.stringify(friends));
+      }
+
+      /*condition that use to check if profile is null or not, if not then it will get data from local storage
+      then returns the string data type that we get from session storage back into JSON, else will set friends a empty array
+      and after all of condition it will update*/
+      if (profile!=null) {
+        friends = JSON.parse(localStorage.getItem(username));
+      }
+      else {
+        friends = [];
+      }
+      displayUpdateFriendsBadge();
+      
+      /*variable that followButtonClass that get document from all class "card-title" and then have
+      forEach() method calls a function for each element in an array and arrow function*/
+      const followButtonsClass = document.querySelectorAll(".card-title");
+      followButtonsClass.forEach((btn) => {
+        const randomUser = btn.innerHTML;
+        friends.forEach((fr) => {
+          if (fr.login == randomUser) {
+            followButtons(btn);
+          }
+        });
+      });
+
+      //function that if user click element that contains class "btn" that is inside elListUser that it will run the next condition
+      elListUser.addEventListener("click", (e) => {
+        if (e.target.classList.contains("btn")) {
+          if (username) {
+            const targetFollowButton = e.target;
+            const friendsName = targetFollowButton.previousElementSibling.textContent;
+            if (targetFollowButton.innerHTML === "Follow")  {
+              followFriends(friendsName);
+            } 
+            else {
+              unfollowFriends(friendsName);
+            }
+
+            followButtons(targetFollowButton);
+          } 
+          else {
+            e.preventDefault();
+            alert("Silahkan kamu login terlebih dahulu. Terima kasih.")
+          }
+        }
+
+        displayUpdateFriendsBadge();
+      });
+
+      //function if user click follow/unfollow button then some class will remove and add
+      function followButtons(btn) {
+        if (btn.innerHTML == "Follow") {
+          btn.innerHTML = "Unfolow";
+          btn.classList.remove("btn-primary");
+          btn.classList.add("btn-success");
+        } 
+        else {
+          btn.innerHTML = "Follow";
+          btn.classList.remove("btn-success");
+          btn.classList.add("btn-primary");
+        }
+      }
+
+
+    </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+  </script>
+
+</body>
+
+</html>
