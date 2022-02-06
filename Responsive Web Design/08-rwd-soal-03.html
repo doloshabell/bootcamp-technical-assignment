@@ -65,12 +65,10 @@
     .flex {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
-      margin: 0.5em;
     }
 
     .flex>* {
-      margin: 0.5em;
+      margin: 0.2em;
     }
 
     .list-item {
@@ -82,19 +80,18 @@
     .item {
       display: flex;
       flex-direction: row;
-      margin: 0.5em;
     }
 
     .item>* {
-      margin: 0.5em;
+      margin: 0.2em;
     }
 
     .item>div:nth-child(1) {
-      order: 1;
+      flex: 1;
     }
 
     .item>div:nth-child(2) {
-      order: 2;
+      flex: 2;
     }
 
     .item-thumbnail img {
@@ -128,11 +125,11 @@
       }
 
       .item>div:nth-child(1) {
-        order: auto;
+        flex: auto;
       }
 
       .item>div:nth-child(2) {
-        order: auto;
+        flex: auto;
       }
 
       .item-text {
