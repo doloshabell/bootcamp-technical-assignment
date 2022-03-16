@@ -32,7 +32,8 @@ VALUES ("Habell", "Dolosha", "Purba", "Mendaki Gunung", "Buku yang berisi cerita
 ("Bambang", "Sudjatmiko", "Jajang", "Sang Pahlawan Kesiangan", "Cerita-cerita lucu tentang manusia sok-sokan", 2, 51000, "limited"),
 ("Joko", "Cakra", "Kulino", "Aku Hebat", "Kumpulan kata-kata motivasi", 0, 55000, "out of stock");
 
-SELECT * FROM books;
+SELECT * 
+FROM books;
 
 SELECT id AS ID, author1 AS A1, author2 AS A2, author3 AS A3
 FROM books;
@@ -65,4 +66,5 @@ UPDATE books
 SET author1 = "Lala", price = 20000
 WHERE id = 2;
 
-DELETE FROM books WHERE id = 3;
+DELETE FROM books 
+WHERE id = 3;
