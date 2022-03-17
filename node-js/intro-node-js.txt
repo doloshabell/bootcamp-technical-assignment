@@ -1,0 +1,18 @@
+1. Mohon jelaskan apa itu Node.js? Apa perbedannya dengan JavaScript?
+2. Mohon jelaskan arsitektur dari Node.js?
+3. Apa perbedaan antara Built-in Module, External Module, dan Custom Module pada Node.js?
+4. Sebutkan salah satu contoh dari Built-in Module, External Module, dan Custom Module pada Node.js?
+
+Jawaban:
+1. platform javascript yang dirancang untuk membangun jaringan aplikasi yang skalabel, yang dapat berjalan
+di server-side. Yang menjadi perbedaan dengan JavaScript adalah Node.js bukan sebuah bahasa pemrograman 
+
+2. Node.js memiliki 2 komponen utama yaitu V8 Engine yang berfungsi sebagai compiler dan Libluv berfungsi untuk
+mengelola operasi asynchronous I/O dan main event loop di Node.js
+
+3. Built-in Module merupakan module yang sudah terinstall didalam Node.js dan untuk menggunakannya kita perlu
+mengimpor module tersebut. External Module merupakan module yang disediakan oleh user node.js yang lain, kita harus
+menginstall terlebih dahulu untuk menggunakannya dan mengimpor ke dalam project kita. Costum Module adalah module yang
+kita rancang sendiri untuk keperluan pribadi yang dibutuhkan project kita.
+
+4. Built-in Module, contoh: console; 
