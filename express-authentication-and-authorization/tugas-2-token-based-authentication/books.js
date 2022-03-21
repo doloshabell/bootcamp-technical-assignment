@@ -1,12 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-dotenv.config();
 app.use(bodyParser.json());
 
 const books = [
