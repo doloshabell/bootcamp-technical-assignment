@@ -12,8 +12,8 @@ Skema Data Pengguna Skiljek:
 
 Skema Data Pengguna SkilShop:
 {
-    "_id": "ObjectId('76q930rfe4')",
-    "fullName": "Habell",
+    "_id": "ObjectId('76q930rfe4')"
+    ,"fullName": "Habell",
     "phoneNumber": "08123456789",
     "address": [ObjectID('1429w0324e'), ObjectID('1429w234r5')]
 }
