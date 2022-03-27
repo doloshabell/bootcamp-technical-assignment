@@ -1,0 +1,81 @@
+1. Relasi yang tepat untuk kebutuhan data profile pengguna aplikasi Skiljek adalah One-to-one.
+
+Skema Data Pengguna Skiljek:
+{
+    "_id": "ObjectId('2w9rfei39rd')",
+    "fullName": "Habell",
+    "email": "habell@mail.com",
+    "phoneNumber": "08123456789"
+}
+
+2. Relasi yang tepat untuk kebutuhan data alamat pengguna SkilShop adalah One-to-many karena user dapat memiliki lebih dari 1 alamat.
+
+Skema Data Pengguna SkilShop:
+{
+    "_id": "ObjectId('76q930rfe4')",
+    "fullName": "Habell",
+    "phoneNumber": "08123456789",
+    "address": [ObjectID('1429w0324e'), ObjectID('1429w234r5')]
+}
+
+Skema Data Alamat:
+{
+    "_id": "ObjectId('1429w0324e')",
+    "address": "Bitung"
+},
+{
+    "_id": "ObjectId('1429w234r5')",
+    "address": "Manado"
+}
+
+3. Relasi yang tepat untuk kebutuhan data dari suatu Products yang akan mempunyai banyak varian dari aplikasi SkilShop adalah One-to-many karena 1 product dapat memiliki banyak variant.
+
+Skema Data Product:
+{
+    "_id": "ObjectId('450t32eped39')",
+    "productName": "Kaos Polos",
+    "brandName": "SkilShirt",
+    "variants": ["ObjectId('2wur3ofpec3u')", "ObjectId('043sjfde45t4')"]
+}
+
+Skema Data Variant:
+{
+    "_id": "ObjectId('2wur3ofpec3u')",
+    "variantName": "Kaos Polos Hitam",
+    "color": "Hitam",
+    "quantity": 12,
+    "price": 99000
+},
+{
+    "_id": "ObjectId('043sjfde45t4')",
+    "variantName": "Kaos Polos Navy",
+    "color": "Navy",
+    "quantity": 10,
+    "price": 99000
+}
+
+4. Relasi yang tepat untuk kebutuhan data dari suatu aplikasi bioskop bernama SkilFlix adalah One-to-many, karena 1 bioskop dapat menampilkan lebih dari 1 film.
+
+Skema Data Bioskop:
+{
+    "_id": "ObjectId('49tr9gof39rd3')",
+    "cinemaName": "CGF",
+    "films": [ObjectId('aucd20ew2eqs'), ObjectId('12e3urjd3dwx')],
+    "location": "Pondok Indah Mall"
+},
+{
+    "_id": "ObjectId('945ytr3r304fr')",
+    "cinemaName": "Cinema31",
+    "films": [ObjectId('aucd20ew2eqs'), ObjectId('12e3urjd3dwx')],
+    "location": "Mall Kelapa Gading"
+}
+
+Skema Data Film:
+{
+    "_id": "ObjectId('aucd20ew2eqs')",
+    "name": "Venom 2"
+},
+{
+    "_id": "ObjectId('12e3urjd3dwx')",
+    "name": "Spiderman No Way Home"
+}
