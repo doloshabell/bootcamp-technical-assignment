@@ -2,7 +2,7 @@ const { Courses } = require("../models");
 
 module.exports = {
     getAll: async (req, res) => {
-        const courses = await Courses.find({}, "-__v").populate("instructor", "-__v");
+        const courses = await Courses.find({}, "-__v").populate("instructor", "-_id -__v");
 
         try {
             res.json({
@@ -17,7 +17,7 @@ module.exports = {
 
     getById: async (req, res) => {
         const id = req.params.id;
-        const course = await Courses.findById(id, "-__v").populate("instructor", "-__v");
+        const course = await Courses.findById(id, "-__v").populate("instructor", "-_id -__v");
 
         try {
             res.json({
