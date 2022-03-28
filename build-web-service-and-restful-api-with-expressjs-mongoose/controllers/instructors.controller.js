@@ -22,7 +22,7 @@ module.exports = {
         try{
             res.json({
                 message: "success get data instructor",
-                data: instructor
+                instructor: instructor
             });
         }
         catch (err){
