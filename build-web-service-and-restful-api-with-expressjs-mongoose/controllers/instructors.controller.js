@@ -7,7 +7,7 @@ module.exports = {
         try {
             res.json({
                 message: "success get all data instructors",
-                data: instructors
+                instructors: instructors
             });
         } 
         catch (err) {
@@ -17,12 +17,12 @@ module.exports = {
 
     getById: async (req, res) => {
         const id = req.params.id;        
-        const instructors = await Instructors.findById(id, "-__v");
+        const instructor = await Instructors.findById(id, "-__v");
 
         try{
             res.json({
                 message: "success get data instructor",
-                data: instructors
+                data: instructor
             });
         }
         catch (err){
@@ -55,7 +55,7 @@ module.exports = {
             res.json({
                 message: "instructor data updated",
                 instructor: instructor
-            })
+            });
         }
         catch (err) {
             res.status(500).send(err);
@@ -74,4 +74,4 @@ module.exports = {
             res.status(500).send(err);
         }
     }
-}
+};
