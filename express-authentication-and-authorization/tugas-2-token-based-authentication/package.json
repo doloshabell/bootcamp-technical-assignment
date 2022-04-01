@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node auth.js",
-    "dev": "nodemon auth.js"
+    "dev": "nodemon auth.js",
+    "start2": "node books.js",
+    "dev2": "nodemon books.js"
   },
   "keywords": [],
   "author": "",
